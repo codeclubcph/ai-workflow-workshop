@@ -1,4 +1,16 @@
-# 07 - Productivity wrap-up (10 min, 0 requests)
+# 07 - Productivity wrap-up (15 min, 0 requests)
+
+> **Solutions (spoilers):** [Exercise 07 answer key](../solutions/07-productivity.md).
+
+## Suggested pacing (15 min)
+
+| Activity | Minutes |
+|---|---:|
+| Review the habits and choose the one that helped most tonight | 4 |
+| Write a small first-week plan for using one habit in a real repo | 5 |
+| Share plans and discuss boundaries for AI-assisted work | 3 |
+| Save the resources, complete the checklist, and clean up the codespace | 3 |
+| **Total** | **15** |
 
 ## What worked tonight - and why
 | Habit | Why it works |
@@ -23,8 +35,22 @@
 2. Write one prompt file or skill for a task you repeat every week.
 3. Before trusting AI with production work, agree with your team on what it may not touch.
 
+## Make a Monday plan (5 min)
+
+Write a small plan you could actually try next week. Fill in these prompts:
+
+- **Task:** What recurring, low-risk task will you try this on?
+- **Context:** Which two or three files or rules will the assistant need?
+- **Mode:** Do you want an explanation, a plan, or an edit?
+- **Verification:** What test, diff, or source will prove the result is right?
+- **Boundary:** What should the assistant not read, change, or send?
+
+Pair up and review each other's plans. Make the verification step specific enough
+that you could tell a plausible but wrong answer from a correct one.
+
 ## Before you leave
 - [ ] Pick **one** habit from the table you'll use on Monday
+- [ ] Your first-week plan includes a concrete way to verify the result
 - [ ] Delete your codespace so it doesn't use your free quota:
       github.com/codespaces -> "..." -> Delete
 - [ ] Keep the repo: the `reference/` folder is a starting point for your own projects

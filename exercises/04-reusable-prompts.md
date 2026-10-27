@@ -1,4 +1,6 @@
-# 04 - Reusable prompts and workflows (10 min, ~2 requests)
+# 04 - Reusable prompts and workflows (15 min, ~2 requests)
+
+> **Solutions (spoilers):** [Exercise 04 answer key](../solutions/04-reusable-prompts.md).
 
 **Goal:** stop retyping good prompts. Turn the debugging workflow from Exercise 02
 into a file the whole team can reuse, and use one to generate documentation.
@@ -6,6 +8,15 @@ into a file the whole team can reuse, and use one to generate documentation.
 **Why this matters:** a good prompt you typed once is lost when you close the chat. As a
 file in the repo it is versioned, reviewed and shared, so everyone gets the same careful
 workflow. And when it goes wrong, you fix the file once, for everyone.
+
+## Suggested pacing (15 min)
+
+| Activity | Minutes |
+|---|---:|
+| Draft the prompt file and add a rule learned from Exercise 02 | 4 |
+| Run `/fix-bug`; review whether it followed the workflow | 7 |
+| Compare prompt files with always-on instructions and discuss reuse | 4 |
+| **Total** | **15** |
 
 ## Step 1 - Write your own prompt file (0 requests)
 Create `.github/prompts/fix-bug.prompt.md`:
@@ -32,6 +43,11 @@ In chat type `/fix-bug` and describe a bug that's still open, e.g. the crash in 
 
 > /fix-bug GET /orders?page=next crashes with ValueError instead of returning 400
 
+Before accepting the change, use the checklist below as a prompt-quality test:
+did the workflow reproduce the problem first, explain the cause, keep the change
+small, and verify it? If it skipped a step, edit the prompt so the instruction is
+specific enough to prevent that failure. Read the resulting diff before moving on.
+
 ## Step 3 (optional, after the workshop) - Generate docs from a prompt file (~2 requests)
 Copy `reference/.github/prompts/write-module-docs.prompt.md` into `.github/prompts/`
 and run:
@@ -46,6 +62,7 @@ Read the "Inconsistencies" section. Did it spot anything? Would you commit these
 - [ ] The run **wrote or ran a failing test first**, named the root cause, made a small fix
       and ran the whole suite
 - [ ] If it skipped a step: you added a rule to the file so it won't next time
+- [ ] You can name one change that made your reusable prompt more reliable
 
 ## Stuck?
 - **`/fix-bug` doesn't appear?** The file must be in `.github/prompts/` and end in

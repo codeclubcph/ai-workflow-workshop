@@ -1,4 +1,6 @@
-# 02 - Debugging and troubleshooting (40 min, ~8 requests)
+# 02 - Debugging and troubleshooting (50 min, ~8 requests)
+
+> **Solutions (spoilers):** [Exercise 02 answer key](../solutions/02-debugging.md).
 
 **Goal:** practise three common ways bugs reach you - a failing test, a symptom in
 production, and a vague report from a human - and use AI without letting it guess.
@@ -14,11 +16,25 @@ keeps you in control and gives the AI the evidence it needs.
 3. Fix (smallest change) - review the diff yourself
 4. Verify (`python -m pytest -q`)
 
+## Suggested pacing (50 min)
+
+| Activity | Minutes |
+|---|---:|
+| Bug A: explain the known failure, apply the one-line fix, and run tests | 12 |
+| Bug B: connect the log symptoms to the failing pagination tests and verify | 15 |
+| Bug C: derive the expected date, add a failing test, and fix the cause | 15 |
+| Compare approaches and discuss where the AI guessed or changed too much | 8 |
+| **Total** | **50** |
+
 ---
 
 ## Bug A - a failing test (~2 requests)
 `tests/test_pricing.py::test_order_of_exactly_500_gets_volume_discount` fails.
 You found the root cause in Exercise 01. Now:
+
+Before asking for a fix, run just this test and record the expected and actual
+values. After the fix, run it again and inspect the diff: confirm the code changed
+the boundary condition rather than weakening the test or changing the discount rule.
 
 > Fix the root cause in src/orders/pricing.py with the smallest possible change.
 > Don't touch the tests. Show the diff.
@@ -36,8 +52,10 @@ Support forwards this line from the production log (`logs/orders-api.log`):
 Users also say "page 1 is missing the first orders". Two tests in
 `tests/test_pagination.py` fail too.
 
-Your task: give the AI the symptom **and** the tests, get an explanation, then fix.
-Tip: ask it to explain *why both symptoms have the same cause* before it changes code.
+First work out by hand which records should appear on page 1 and page 3 for 25
+items with 10 items per page. Then give the AI the symptom **and** the tests, get
+an explanation, and fix. Ask it to explain *why both symptoms have the same cause*
+before it changes code. Check the two failing tests separately after the fix.
 
 ## Bug C - a vague human report (~3 requests)
 From customer support, no test exists:
@@ -52,13 +70,16 @@ The rule is in the docstring of `src/orders/delivery.py`.
    `tests/test_delivery.py`. Check that the expected date is right *by hand*
    (look at a calendar - don't trust the AI's date arithmetic blindly).
 2. Run it - it must fail.
-3. Then ask for the fix.
+3. Before asking for the fix, read the delivery docstring and write down which
+   business-day rule the test exercises.
+4. Then ask for the fix. Run the new test and the full suite.
 
 ## Check yourself
 - [ ] After Bug A: **2 failed, 10 passed**. The fix changed one line in `pricing.py`
 - [ ] After Bug B: **all 12 tests pass**. One explanation covers both symptoms
 - [ ] Bug C: your new test **failed before the fix** and passes after it
 - [ ] You checked the expected date in Bug C yourself, on a calendar
+- [ ] Your test checks the business rule, not just the specific example date
 - [ ] `git diff --stat` shows changes in `src/orders/` and your **new** test only. No
       existing test was edited or deleted
 

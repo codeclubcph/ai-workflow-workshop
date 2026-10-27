@@ -1,9 +1,21 @@
-# 00 - Setup check (10 min, 1 request)
+# 00 - Setup check (20 min, 1 request)
+
+> **Solutions (spoilers):** [Exercise 00 answer key](../solutions/00-setup.md).
 
 **Goal:** everyone has a working repo, test runner and AI assistant.
 
 **Why this matters:** every exercise tonight starts from a failing test or a real file in
 this repo. If the tests run and Copilot answers, everything else works too.
+
+## Suggested pacing (20 min)
+
+| Activity | Minutes |
+|---|---:|
+| Welcome: what the assistant can see and how chat differs from an agent | 4 |
+| Open the repo, run/check the tests, and resolve setup issues | 8 |
+| Ask the one-sentence repo question and compare answers with a neighbour | 4 |
+| Find the chat modes, practise choosing one for a task, and confirm everyone is ready | 4 |
+| **Total** | **20** |
 
 1. Open the workshop environment. Easiest: on the GitHub repo page click
    **Code -> Codespaces -> Create codespace on main** (runs in your browser, nothing to install).
@@ -26,11 +38,23 @@ In the chat input, look for the mode/agent picker:
 - **Edit/Plan** - proposes or plans changes for you to review.
 - **Agent** - can edit files and run commands on its own. Most powerful, uses the most.
 
+## Pair check: choose the mode (4 min)
+
+With a neighbour, decide which mode you would use for each task and why:
+
+1. "Explain why this test is failing, but don't change anything."
+2. "Make the smallest fix for this failing test and run the test suite."
+3. "I don't know how to approach this bug. Help me make a plan before editing."
+
+Point out which mode can make changes or run commands. Then find the chat's mode
+picker yourself. Be ready to explain your choices before moving on.
+
 ## Check yourself
 - [ ] VS Code is open on the repo (in your browser or locally)
 - [ ] The terminal shows **3 failed, 9 passed**. Three failures is correct: they are tonight's bugs
 - [ ] Copilot Chat gave a sensible one-sentence answer
 - [ ] You can find the Ask / Agent picker in the chat box
+- [ ] You can choose a mode based on whether you want an answer, a plan, or changes
 
 ## Stuck?
 - `python` not found on your own machine -> try `python3`, or switch to a codespace.

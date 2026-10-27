@@ -1,4 +1,6 @@
-# 06 - Security and privacy (15 min, ~2 requests)
+# 06 - Security and privacy (20 min, ~2 requests)
+
+> **Solutions (spoilers):** [Exercise 06 answer key](../solutions/06-security.md).
 
 **Goal:** treat AI-generated code like code from a fast but careless colleague,
 and know what you may and may not send to an AI service.
@@ -7,9 +9,21 @@ and know what you may and may not send to an AI service.
 it writes usually works, so functional tests pass and the problems slip through review.
 And everything you put in a prompt or let an agent read leaves your machine.
 
+## Suggested pacing (20 min)
+
+| Activity | Minutes |
+|---|---:|
+| Review the repository code yourself and record findings before using AI | 5 |
+| Ask for a security review; compare its findings with your notes and the log | 5 |
+| Fix one high-priority issue and verify it with a regression test | 5 |
+| Discuss data sharing, prompt injection, and supply-chain decisions in pairs | 5 |
+| **Total** | **20** |
+
 ## Step 1 - Human review first (5 min, 0 requests)
 Open `src/orders/repository.py`. It was "written quickly with AI help".
-**Without AI**, write down every problem you can find. Then compare with your neighbour.
+**Without AI**, write down every problem you can find. For each, note the affected
+asset (data, credentials, or service), how an attacker or mistake could reach it,
+and a severity. Then compare your top two findings with your neighbour.
 
 ## Step 2 - AI review (~1 request)
 ```
@@ -19,6 +33,11 @@ Open `src/orders/repository.py`. It was "written quickly with AI help".
 
 Did the AI find something you missed? Did you find something it missed?
 Look back at `logs/orders-api.log` around 08:05 - was the problem exploited?
+
+Separate what the code proves (for example, unsafe query construction) from what the
+log suggests but cannot prove (for example, who sent the request or what data they
+were authorized to access). Rank the findings by impact and likelihood before choosing
+what to fix.
 
 ## Step 3 - Fix the worst issue (~1 request)
 Ask for a fix for the most severe finding only, and add a test that proves it is fixed
@@ -51,6 +70,15 @@ Talk through these, in pairs, then together:
 4. **Prompt injection** - an agent that reads an issue, a web page or a log can be
    told to do things by whoever wrote that text. How do hooks and read-only agents help?
 5. **Supply chain** - an AI suggests a package you've never heard of. What do you check?
+
+Choose one scenario and agree on a concrete team rule:
+
+- A real API key is found in a public commit: what happens first, and is deleting the
+  line enough?
+- A log contains customer emails: what must happen before using it with an AI tool?
+- An agent reads an issue that asks it to reveal a secret: what should constrain it?
+
+Write the rule as one sentence and share it with another pair.
 
 ## Takeaway checklist
 - [ ] Review AI code like any pull request - especially SQL, shell, auth and file paths

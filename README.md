@@ -50,15 +50,18 @@ Read the fixed Dockerfile instead, or try it later on a machine with Docker.
 
 | # | Topic | Time | AI requests (approx.) |
 |---|-------|------|-----------------------|
-| [00](exercises/00-setup.md) | Setup check | 10 min | 1 |
-| [01](exercises/01-context-engineering.md) | Context engineering | 25 min | 3 |
-| [02](exercises/02-debugging.md) | Debugging and troubleshooting | 40 min | 8 |
-| [03](exercises/03-infra-devops.md) | Infrastructure and DevOps | 25 min | 6 |
-| [04](exercises/04-reusable-prompts.md) | Reusable prompts and workflows | 10 min | 2 (+2 optional) |
-| [05](exercises/05-agents.md) | Agents, skills, hooks and automation | 15 min | 5 |
-| [06](exercises/06-security.md) | Security and privacy | 15 min | 2 |
-| [07](exercises/07-productivity.md) | Productivity wrap-up | 10 min | 0 |
-| | **Total** | | **~27** |
+| [00](exercises/00-setup.md) | Setup check | 20 min | 1 |
+| [01](exercises/01-context-engineering.md) | Context engineering | 35 min | 3 |
+| [02](exercises/02-debugging.md) | Debugging and troubleshooting | 50 min | 8 |
+| [03](exercises/03-infra-devops.md) | Infrastructure and DevOps | 30 min | 6 |
+| [04](exercises/04-reusable-prompts.md) | Reusable prompts and workflows | 15 min | 2 (+2 optional) |
+| [05](exercises/05-agents.md) | Agents, skills, hooks and automation | 25 min | 5 |
+| [06](exercises/06-security.md) | Security and privacy | 20 min | 2 |
+| [07](exercises/07-productivity.md) | Productivity wrap-up | 15 min | 0 |
+| | **Total** | **3 hr 30 min** | **~27** |
+
+Need to check your answers? See the [exercise solutions](solutions/README.md)
+after trying the exercises.
 
 Three breaks: 17:55 (5 min), 18:50 (20 min) and 19:55 (5 min).
 
