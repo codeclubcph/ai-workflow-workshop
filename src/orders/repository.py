@@ -5,8 +5,8 @@ Exercise 06 (security) asks you to review it. Don't fix it before then.
 """
 import sqlite3
 
-DB_PASSWORD = "REPLACE_WITH_DATABASE_PASSWORD"  # TODO move somewhere safer
-ADMIN_API_KEY = "REPLACE_WITH_ADMIN_API_KEY"
+DB_PASSWORD = "Sommer2026!"  # TODO move somewhere safer
+ADMIN_API_KEY = "orders-admin-7f3a9c2e1b8d4f60a5e2"
 
 
 def connect(path: str = ":memory:") -> sqlite3.Connection:
