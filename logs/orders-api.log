@@ -1,0 +1,40 @@
+2026-10-26T08:00:01.112Z INFO  orders-api starting version=0.1.0 pid=1
+2026-10-26T08:00:01.115Z INFO  Listening on http://0.0.0.0:8000
+2026-10-26T08:00:04.871Z INFO  GET /health 200 1ms ua=kube-probe/1.30
+2026-10-26T08:00:14.870Z INFO  GET /health 200 0ms ua=kube-probe/1.30
+2026-10-26T08:01:02.334Z INFO  GET /orders?page=1 200 4ms ua=Mozilla/5.0 user=anna@example.com
+2026-10-26T08:01:09.902Z INFO  GET /orders?page=2 200 3ms ua=Mozilla/5.0 user=anna@example.com
+2026-10-26T08:01:15.447Z INFO  GET /orders?page=3 200 2ms ua=Mozilla/5.0 user=anna@example.com items=0
+2026-10-26T08:01:15.448Z WARN  frontend: page 3 rendered with 0 items but total_pages=3
+2026-10-26T08:01:24.870Z INFO  GET /health 200 1ms ua=kube-probe/1.30
+2026-10-26T08:02:41.005Z INFO  GET /orders?page=next 500 1ms ua=python-requests/2.32 user=batch-export
+2026-10-26T08:02:41.006Z ERROR Exception occurred during processing of request from ('10.42.0.17', 51544)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/socketserver.py", line 318, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/local/lib/python3.13/http/server.py", line 436, in handle_one_request
+    method()
+  File "/app/src/orders/app.py", line 34, in do_GET
+    page = int(query.get("page", ["1"])[0])
+ValueError: invalid literal for int() with base 10: 'next'
+2026-10-26T08:02:41.210Z WARN  batch-export: retry 1/5 for /orders?page=next
+2026-10-26T08:02:41.611Z INFO  GET /orders?page=next 500 0ms ua=python-requests/2.32 user=batch-export
+2026-10-26T08:02:41.612Z ERROR Exception occurred during processing of request from ('10.42.0.17', 51546)
+ValueError: invalid literal for int() with base 10: 'next'
+2026-10-26T08:02:42.413Z WARN  batch-export: retry 2/5 for /orders?page=next
+2026-10-26T08:02:44.015Z WARN  batch-export: retry 3/5 for /orders?page=next
+2026-10-26T08:02:47.217Z WARN  batch-export: retry 4/5 for /orders?page=next
+2026-10-26T08:02:53.619Z ERROR batch-export: giving up after 5 attempts, nightly export INCOMPLETE
+2026-10-26T08:03:04.870Z INFO  GET /health 200 0ms ua=kube-probe/1.30
+2026-10-26T08:05:12.090Z INFO  Running query: SELECT id, customer, email, total FROM orders WHERE customer = 'Example ApS'
+2026-10-26T08:05:30.551Z INFO  Running query: SELECT id, customer, email, total FROM orders WHERE customer = 'x' OR '1'='1'
+2026-10-26T08:05:30.553Z INFO  query returned 4182 rows user=unknown ip=203.0.113.77
+2026-10-26T08:06:01.777Z INFO  GET /delivery 200 1ms ua=Mozilla/5.0
+2026-10-26T08:07:44.870Z WARN  GET /health 200 2104ms ua=kube-probe/1.30 slow=true
+2026-10-26T08:07:54.870Z WARN  GET /health 200 2310ms ua=kube-probe/1.30 slow=true
+2026-10-26T08:08:04.871Z ERROR kube-probe: liveness probe failed: timeout after 2s
+2026-10-26T08:08:14.871Z ERROR kube-probe: liveness probe failed: timeout after 2s
+2026-10-26T08:08:24.871Z ERROR kube-probe: liveness probe failed: timeout after 2s
+2026-10-26T08:08:24.990Z WARN  container orders-api restarting (exit code 137, OOMKilled=false, reason=LivenessProbeFailure)
+2026-10-26T08:08:27.403Z INFO  orders-api starting version=0.1.0 pid=1
+2026-10-26T08:08:27.406Z INFO  Listening on http://0.0.0.0:8000

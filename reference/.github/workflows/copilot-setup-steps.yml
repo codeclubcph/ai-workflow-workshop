@@ -1,0 +1,31 @@
+# Prepares the environment for the Copilot cloud agent before it starts work,
+# so the agent doesn't waste time (and credits) installing things itself.
+# The job MUST be called `copilot-setup-steps`.
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dev dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Smoke-test the test runner
+        run: python -m pytest --collect-only -q

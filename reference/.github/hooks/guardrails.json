@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "command": "python .github/hooks/session_context.py",
+        "timeoutSec": 10
+      }
+    ],
+    "preToolUse": [
+      {
+        "type": "command",
+        "command": "python .github/hooks/guard_tool_use.py",
+        "timeoutSec": 10
+      }
+    ]
+  }
+}
