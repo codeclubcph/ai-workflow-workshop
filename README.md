@@ -35,7 +35,7 @@ Needs Docker and VS Code with the **Dev Containers** extension.
 Needs Git and Python 3.11 or newer.
 
 ```bash
-git clone <REPO-URL> ai-workflows-workshop
+git clone https://github.com/codeclubcph/ai-workflow-workshop.git ai-workflows-workshop
 cd ai-workflows-workshop
 python -m pip install -r requirements-dev.txt
 python -m pytest -q
