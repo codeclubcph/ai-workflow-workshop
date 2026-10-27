@@ -44,9 +44,9 @@ Bonus if you have Docker on your own machine (not inside a codespace):
 and open http://localhost:8000/health.
 
 ## Part B - Why does CI never run? (~2 requests)
-`.github/workflows/ci.yml` has never run on this repo - and would fail if it did.
+`.github/workflows/ci.yaml` has never run on this repo - and would fail if it did.
 
-> #file:.github/workflows/ci.yml This workflow never triggers on our default branch
+> #file:.github/workflows/ci.yaml This workflow never triggers on our default branch
 > `main`, and it would fail if it ran. Find all problems and explain each in one line.
 
 There are **four** problems. One of them is a classic YAML trap that even experienced

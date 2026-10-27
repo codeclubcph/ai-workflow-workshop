@@ -24,14 +24,22 @@ third-party dependencies, it need not install pytest into a production image.
 Many Dockerfiles can satisfy these requirements; the exercise is to verify the
 proposed image against repository contents rather than match one exact answer.
 
-## Part B: CI workflow fixture is missing
+## Part B: CI workflow (`.github/workflows/ci.yaml`)
 
-The exercise asks participants to inspect `.github/workflows/ci.yml`, but that
-file is **not present in this checkout**. The only tracked workflow is the
-Copilot setup example under `reference/.github/workflows/`. Therefore, the
-claimed four CI problems cannot be determined from the repository as provided.
-Restore or add the intended `ci.yml` fixture before running or grading this part.
-Do not invent its contents or expected failures.
+The four problems:
+
+1. **Wrong branch:** `push` triggers only on `master`, but the default branch is
+   `main`, so pushes to `main` never run CI. Use `branches: [main]`.
+2. **YAML number trap:** unquoted `python-version: 3.10` is parsed as the number
+   `3.1`, so `setup-python` looks for Python 3.1. Quote it: `"3.10"` (or use
+   `"3.13"`; the project requires 3.11+, so 3.10 is also too old).
+3. **Missing file:** `pip install -r requirements.txt` fails because the repo
+   has `requirements-dev.txt`.
+4. **Wrong test path:** `pytest test/` points to a folder that doesn't exist;
+   the tests are in `tests/`.
+
+Each fix is one line in the workflow. Verify claims against the repository
+(branch name, file names, folder names) rather than trusting an AI's answer.
 
 ## Part C: log triage
 

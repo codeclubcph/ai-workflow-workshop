@@ -1,0 +1,27 @@
+{
+  // Ready-made environment for the workshop: Python, Git, pytest and VS Code extensions.
+  // Works two ways:
+  //   1. GitHub Codespaces: "Code" button on GitHub -> Codespaces -> Create. Runs in the browser.
+  //   2. Locally: Docker + the VS Code "Dev Containers" extension -> "Reopen in Container".
+  "name": "AI Workflows Workshop",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13",
+  "postCreateCommand": "pip install --user -r requirements-dev.txt && python -m pytest -q || true",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot-chat",
+        "ms-python.python"
+      ],
+      "settings": {
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": ["tests"]
+      }
+    },
+    "codespaces": {
+      "openFiles": ["README.md"]
+    }
+  },
+  "hostRequirements": {
+    "cpus": 2
+  }
+}
